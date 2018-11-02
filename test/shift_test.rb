@@ -6,7 +6,7 @@ class ShiftTest < Minitest::Test
   def setup
     @key = "12345"
     @date = Date.new(1970, 1, 1)
-    @shift = Shift.new(key, date)
+    @shift = Shift.new(@key, @date)
   end
 
   def test_it_exists
