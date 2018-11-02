@@ -38,7 +38,7 @@ class ShiftTest < Minitest::Test
   end
 
   def test_it_can_simplify_offset
-    assert_equal [16, 2, 12, 24], @shift.simplify_offset
+    assert_equal [20, 5, 7, 18], @shift.simplify_offset
   end
 
   def test_it_can_encode_a_letter
