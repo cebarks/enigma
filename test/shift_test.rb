@@ -33,6 +33,10 @@ class ShiftTest < Minitest::Test
     assert_equal [20, 32, 34, 45], @shift.offset
   end
 
+  def test_it_can_simplify_a_single_offset
+    assert_equal 13, @shift.simplify_single_offset(40)
+  end
+
   def test_it_can_simplify_offset
     assert_equal [16, 2, 12, 24], @shift.simplify_offset
   end
