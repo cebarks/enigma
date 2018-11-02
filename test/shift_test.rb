@@ -50,10 +50,10 @@ class ShiftTest < Minitest::Test
   end
 
   def test_it_can_encode_a_chunk
-    assert_equal 'xgxi', @shift.encode('hell')
+    assert_equal 'ajsc', @shift.encode('hell')
   end
 
   def test_it_can_decode_a_chunk
-    assert_equal 'hell', @shift.decode('xgxi')
+    assert_equal 'hell', @shift.decode('ajsc')
   end
 end
