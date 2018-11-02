@@ -51,4 +51,10 @@ class Shift
       encode_letter(let, simplify_offset[i])
     end.join()
   end
+
+  def decode(chunk)
+    chunk.split('').map.with_index do |let, i|
+      decode_letter(let, simplify_offset[i])
+    end.join()
+  end
 end
