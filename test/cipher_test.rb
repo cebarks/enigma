@@ -2,7 +2,7 @@ require_relative 'test_helper'
 
 require './lib/shift'
 
-class ShiftTest < Minitest::Test
+class CipherTest < Minitest::Test
   def setup
     @key = "12345"
     @date = Date.new(1970, 1, 1)
