@@ -18,6 +18,18 @@ class Enigma
     {encryption: ciphertext, key: key, date: date}
   end
 
+  def decrypt(ciphertext, key = get_random_key, date = format_date(Date.today))
+    message = Message.new(ciphertext, false)
+    shift = Shift.new(key, date)
+    cipher = Cipher.new(shift)
+
+    ciphertext = message.map do |chunk|
+      cipher.decode(chunk)
+    end.join('')
+
+    {decryption: ciphertext, key: key, date: date}
+  end
+
   def format_date(date)
     date.strftime('%d%m%y')
   end
