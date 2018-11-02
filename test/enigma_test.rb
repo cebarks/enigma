@@ -32,6 +32,6 @@ class EnigmaTest < Minitest::Test
 
   def test_format_date
     date = Date.new(1970, 1, 1)
-    assert_equal '010170', @engima.format_date(date)
+    assert_equal '010170', @enigma.format_date(date)
   end
 end
