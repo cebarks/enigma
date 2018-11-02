@@ -6,7 +6,7 @@ class ShiftTest < Minitest::Test
   def setup
     @key = "12345"
     @date = Date.new(1970, 1, 1)
-    @shift = Shift.new(key, date)
+    @shift = Shift.new(@key, @date)
   end
 
   def test_it_exists
@@ -22,7 +22,7 @@ class ShiftTest < Minitest::Test
   end
 
   def test_it_has_a_date_offset
-    assert_equal [4, 6, 5, 6], @shift.date_offset
+    assert_equal [8, 9, 0, 0], @shift.date_offset
   end
 
   def test_it_has_a_key_offset
@@ -30,11 +30,15 @@ class ShiftTest < Minitest::Test
   end
 
   def test_it_has_an_offset
-    assert_equal [16, 29, 39, 51], @shift.offset
+    assert_equal [20, 32, 34, 45], @shift.offset
+  end
+
+  def test_it_can_simplify_a_single_offset
+    assert_equal 13, @shift.simplify_single_offset(40)
   end
 
   def test_it_can_simplify_offset
-    assert_equal [16, 2, 12, 24], @shift.simplify_offset
+    assert_equal [20, 5, 7, 18], @shift.simplify_offset
   end
 
   def test_it_can_encode_a_letter
@@ -46,10 +50,10 @@ class ShiftTest < Minitest::Test
   end
 
   def test_it_can_encode_a_chunk
-    assert_equal 'xgxi', @shift.encode('hell')
+    assert_equal 'ajsc', @shift.encode('hell')
   end
 
   def test_it_can_decode_a_chunk
-    assert_equal 'hell', @shift.decode('xgxi')
+    assert_equal 'hell', @shift.decode('ajsc')
   end
 end
