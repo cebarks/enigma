@@ -39,7 +39,10 @@ class Shift
   end
 
   def encode_letter(letter, offset)
-    char_set = Enigma::CHAR_SET
-    char_set.rotate(offset)[Enigma::CHAR_SET.find_index(letter)]
+    Enigma::CHAR_SET.rotate(offset)[Enigma::CHAR_SET.find_index(letter)]
+  end
+
+  def decode_letter(letter, offset)
+    Enigma::CHAR_SET.rotate(-offset)[Enigma::CHAR_SET.find_index(letter)]
   end
 end
