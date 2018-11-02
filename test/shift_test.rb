@@ -22,7 +22,7 @@ class ShiftTest < Minitest::Test
   end
 
   def test_it_has_a_date_offset
-    assert_equal [4, 6, 5, 6], @shift.date_offset
+    assert_equal [8, 9, 0, 0], @shift.date_offset
   end
 
   def test_it_has_a_key_offset
