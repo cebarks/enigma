@@ -37,24 +37,4 @@ class Shift
   def simplify_single_offset(num)
     num % Enigma::CHAR_SET.length
   end
-
-  def encode_letter(letter, offset)
-    Enigma::CHAR_SET.rotate(offset)[Enigma::CHAR_SET.find_index(letter)]
-  end
-
-  def decode_letter(letter, offset)
-    Enigma::CHAR_SET.rotate(-offset)[Enigma::CHAR_SET.find_index(letter)]
-  end
-
-  def encode(chunk)
-    chunk.split('').map.with_index do |let, i|
-      encode_letter(let, simplify_offset[i])
-    end.join()
-  end
-
-  def decode(chunk)
-    chunk.split('').map.with_index do |let, i|
-      decode_letter(let, simplify_offset[i])
-    end.join()
-  end
 end
