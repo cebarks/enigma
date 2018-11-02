@@ -8,6 +8,10 @@ class Message
     @plain = plaintext
   end
 
+  def plain?
+    @plain
+  end
+
   def each(&block)
     @chunks.each do |chunk|
       block.call(chunk)
