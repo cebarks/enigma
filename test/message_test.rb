@@ -4,8 +4,8 @@ require './lib/message'
 
 class MessageTest < Minitest::Test
   def setup
-    @plaintext = Message.new('hello world', false)
-    @ciphertext = Message.new('keder ohulw', true)
+    @plaintext = Message.new('hello world', true)
+    @ciphertext = Message.new('keder ohulw', false)
   end
 
   def test_it_exists
