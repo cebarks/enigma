@@ -36,4 +36,20 @@ class ShiftTest < Minitest::Test
   def test_it_can_simplify_offset
     assert_equal [16, 2, 12, 24], @shift.simplify_offset
   end
+
+  def test_it_can_encode_a_letter
+    assert_equal 'x', @shift.encode_letter('h', 16)
+  end
+
+  def test_it_can_decode_a_letter
+    assert_equal 'h', @shift.decode_letter('x', 16)
+  end
+
+  def test_it_can_encode_a_chunk
+    assert_equal 'xgxi', @shift.encode('hell')
+  end
+
+  def test_it_can_decode_a_chunk
+    assert_equal 'hell', @shift.decode('xgxi')
+  end
 end
