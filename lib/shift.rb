@@ -45,4 +45,10 @@ class Shift
   def decode_letter(letter, offset)
     Enigma::CHAR_SET.rotate(-offset)[Enigma::CHAR_SET.find_index(letter)]
   end
+
+  def encode(chunk)
+    chunk.split('').map.with_index do |let, i|
+      encode_letter(let, simplify_offset[i])
+    end.join()
+  end
 end
