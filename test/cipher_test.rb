@@ -1,5 +1,7 @@
 require_relative 'test_helper'
 
+require 'date'
+require './lib/cipher'
 require './lib/shift'
 
 class CipherTest < Minitest::Test
