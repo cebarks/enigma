@@ -11,4 +11,12 @@ class Shift
     last_4 = date_num_string[date_num_string.length-4..date_num_string.length]
     last_4.split('').map(&:to_i)
   end
+
+  def key_offset
+    offset = []
+    4.times do |i|
+      offset << @key[i..i+1]
+    end
+    offset.map(&:to_i)
+  end
 end
