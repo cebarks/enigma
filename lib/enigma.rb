@@ -3,6 +3,10 @@ class Enigma
 
   
 
+  def format_date(date)
+    date.strftime('%d%m%y')
+  end
+
   def get_random_key
     key = rand(0..99999).to_s
 
