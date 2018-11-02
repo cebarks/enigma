@@ -19,4 +19,10 @@ class Shift
     end
     offset.map(&:to_i)
   end
+
+  def offset
+    date_offset.map.with_index do |e, i|
+      key_offset[i] + e
+    end
+  end
 end
