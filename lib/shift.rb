@@ -37,4 +37,9 @@ class Shift
   def simplify_single_offset(num)
     num % Enigma::CHAR_SET.length
   end
+
+  def encode_letter(letter, offset)
+    char_set = Enigma::CHAR_SET
+    char_set.rotate(offset)[Enigma::CHAR_SET.find_index(letter)]
+  end
 end
