@@ -8,8 +8,7 @@ class Shift
   end
 
   def date_offset
-    date_num = @date.strftime('%d%m%y').to_i
-    date_str = (date_num ** 2).to_s
+    date_str = (@date.to_i ** 2).to_s
     last_4 = date_str[date_str.length - 4..date_str.length]
     last_4.split('').map(&:to_i)
   end
