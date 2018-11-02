@@ -1,3 +1,5 @@
+require_relative 'enigma'
+
 class Shift
   attr_reader :key, :date
   def initialize(key, date)
@@ -24,5 +26,15 @@ class Shift
     date_offset.map.with_index do |e, i|
       key_offset[i] + e
     end
+  end
+
+  def simplify_offset
+    offset.map do |single_offset|
+      simplify_single_offset(single_offset)
+    end
+  end
+
+  def simplify_single_offset(num)
+    num % Enigma::CHAR_SET.length
   end
 end
