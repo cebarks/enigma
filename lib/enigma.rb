@@ -35,12 +35,6 @@ class Enigma
   end
 
   def get_random_key
-    key = rand(0..99999).to_s
-
-    until key.length == 5
-      key.prepend('0')
-    end
-
-    key
+    rand(0..99999).to_s.rjust(5, '0')
   end
 end
