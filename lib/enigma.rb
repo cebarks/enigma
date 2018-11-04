@@ -7,7 +7,7 @@ class Enigma
   CHAR_SET = (('a'..'z').to_a << ' ').freeze
 
   def encrypt(plaintext, key = get_random_key, date = format_date(Date.today))
-    message = Message.new(plaintext, true)
+    message = Message.new(plaintext)
     shift = Shift.new(key, date)
     cipher = Cipher.new(shift)
 
@@ -15,11 +15,11 @@ class Enigma
       cipher.encode(chunk)
     end.join('')
 
-    {encryption: ciphertext, key: key, date: date}
+    { encryption: ciphertext, key: key, date: date }
   end
 
   def decrypt(ciphertext, key = get_random_key, date = format_date(Date.today))
-    message = Message.new(ciphertext, false)
+    message = Message.new(ciphertext)
     shift = Shift.new(key, date)
     cipher = Cipher.new(shift)
 
@@ -27,7 +27,7 @@ class Enigma
       cipher.decode(chunk)
     end.join('')
 
-    {decryption: ciphertext, key: key, date: date}
+    { decryption: ciphertext, key: key, date: date }
   end
 
   def format_date(date)
