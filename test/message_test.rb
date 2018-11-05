@@ -4,31 +4,18 @@ require './lib/message'
 
 class MessageTest < Minitest::Test
   def setup
-    @plaintext = Message.new('hello world', true)
-    @ciphertext = Message.new('keder ohulw', false)
+    @message = Message.new('hello world')
   end
 
   def test_it_exists
-    assert_instance_of Message, @plaintext
-    assert_instance_of Message, @ciphertext
-  end
-
-  def test_it_knows_if_its_plain
-    refute @ciphertext.plain?
-    assert @plaintext.plain?
+    assert_instance_of Message, @message
   end
 
   def test_it_can_enumerate_chunks
-    actual = []
-
-    @plaintext.each do |chunk|
-      actual << chunk
-    end
-
-    assert_equal %w[hell o\ wo rld], actual
+    assert_equal %w[hell o\ wo rld], @message.each {}
   end
 
-  def test_it_has_chunks
-    assert_equal %w[hell o\ wo rld], @plaintext.chunks
+  def test_it_has_a_message
+    assert_equal 'hello world', @message.message
   end
 end
