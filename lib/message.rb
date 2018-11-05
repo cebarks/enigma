@@ -4,11 +4,11 @@ class Message
   attr_reader :message
 
   def initialize(message)
-    @message = message.downcase.scan(/.{1,4}/)
+    @message = message
   end
 
   def each(&block)
-    @message.each do |chunk|
+    @message.downcase.scan(/.{1,4}/).each do |chunk|
       block.call(chunk)
     end
   end
