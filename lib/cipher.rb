@@ -1,6 +1,7 @@
 class Cipher
   def initialize(shift)
-    @offset = shift.simplify_offset
+    @offset = shift.offset
+    @charset = shift.charset
   end
 
   def shift_letter(letter, offset, direction)

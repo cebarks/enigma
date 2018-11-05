@@ -1,12 +1,14 @@
 require_relative 'test_helper'
 
 require './lib/shift'
+require './lib/date_format'
 
 class ShiftTest < Minitest::Test
+  include DateFormat
   def setup
     @key = "12345"
-    @date = Date.new(1970, 1, 1)
-    @shift = Shift.new(@key, @date)
+    @date = format_date(Date.new(1970, 1, 1))
+    @shift = Shift.new(@key, @date, (('a'..'z').to_a << ' '))
   end
 
   def test_it_exists
@@ -30,14 +32,10 @@ class ShiftTest < Minitest::Test
   end
 
   def test_it_has_an_offset
-    assert_equal [20, 32, 34, 45], @shift.offset
+    assert_equal [20, 5, 7, 18], @shift.offset
   end
 
   def test_it_can_simplify_a_single_offset
     assert_equal 13, @shift.simplify_single_offset(40)
-  end
-
-  def test_it_can_simplify_offset
-    assert_equal [20, 5, 7, 18], @shift.simplify_offset
   end
 end
