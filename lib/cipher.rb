@@ -3,23 +3,21 @@ class Cipher
     @offset = shift.simplify_offset
   end
 
-  def encode_letter(letter, offset)
-    Enigma::CHAR_SET.rotate(offset)[Enigma::CHAR_SET.find_index(letter)]
-  end
-
-  def decode_letter(letter, offset)
-    Enigma::CHAR_SET.rotate(-offset)[Enigma::CHAR_SET.find_index(letter)]
+  def shift_letter(letter, offset, direction)
+    @charset.rotate(offset * direction)[@charset.find_index(letter)]
   end
 
   def encode(chunk)
-    chunk.split('').map.with_index do |let, i|
-      encode_letter(let, @offset[i])
-    end.join()
+    shift(chunk, 1)
   end
 
   def decode(chunk)
+    shift(chunk, -1)
+  end
+
+  def shift(chunk, direction)
     chunk.split('').map.with_index do |let, i|
-      decode_letter(let, @offset[i])
+      shift_letter(let, @offset[i], direction)
     end.join()
   end
 end
