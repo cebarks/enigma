@@ -2,6 +2,7 @@
 require_relative 'message'
 require_relative 'shift'
 require_relative 'cipher'
+require_relative 'date_format'
 
 class Enigma
   CHAR_SET = (('a'..'z').to_a << ' ').freeze
@@ -28,10 +29,6 @@ class Enigma
     end.join('')
 
     { decryption: ciphertext, key: key, date: date }
-  end
-
-  def format_date(date)
-    date.strftime('%d%m%y')
   end
 
   def get_random_key
