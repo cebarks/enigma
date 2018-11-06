@@ -9,11 +9,7 @@ class Enigma
     message = Message.new(plaintext)
     shift = Shift.new(key, date, Enigma.default_charset)
     cipher = Cipher.new(shift)
-
-    ciphertext = message.map do |chunk|
-      cipher.encode(chunk)
-    end.join('')
-
+    ciphertext = cipher.encode_message(message)
     { encryption: ciphertext, key: key, date: date }
   end
 
@@ -21,12 +17,8 @@ class Enigma
     message = Message.new(ciphertext)
     shift = Shift.new(key, date, Enigma.default_charset)
     cipher = Cipher.new(shift)
-
-    ciphertext = message.map do |chunk|
-      cipher.decode(chunk)
-    end.join('')
-
-    { decryption: ciphertext, key: key, date: date }
+    plaintext = cipher.decode_message(message)
+    { decryption: plaintext, key: key, date: date }
   end
 
   def crack(ciphertext, date = format_date(Date.today))
@@ -36,11 +28,7 @@ class Enigma
       message = Message.new(ciphertext)
       shift = Shift.new(i.to_s.rjust(5, '0'), date, Enigma.default_charset)
       cipher = Cipher.new(shift)
-
-      plaintext = message.map do |chunk|
-        cipher.decode(chunk)
-      end.join('')
-
+      plaintext = cipher.decode_message(message)
       i += 1
     end until plaintext[plaintext.length-4..plaintext.length] == ' end'
     { decryption: plaintext, key: (i-1).to_s.rjust(5, '0'), date: date }

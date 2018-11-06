@@ -9,17 +9,23 @@ class Cipher
     @charset.rotate(offset * direction)[@charset.find_index(letter)]
   end
 
-  def encode(chunk)
-    shift(chunk, 1)
-  end
-
-  def decode(chunk)
-    shift(chunk, -1)
-  end
-
   def shift(chunk, direction)
     chunk.split('').map.with_index do |let, i|
       shift_letter(let, @offset[i], direction)
     end.join()
+  end
+
+  def shift_message(message, direction)
+    message.map do |chunk|
+      shift(chunk, direction)
+    end.join('')
+  end
+
+  def encode_message(message)
+    shift_message(message, 1)
+  end
+
+  def decode_message(message)
+    shift_message(message, -1)
   end
 end
