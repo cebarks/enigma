@@ -5,6 +5,7 @@ class Cipher
   end
 
   def shift_letter(letter, offset, direction)
+    return letter unless @charset.include?(letter)
     @charset.rotate(offset * direction)[@charset.find_index(letter)]
   end
 
