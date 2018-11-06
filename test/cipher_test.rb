@@ -4,13 +4,14 @@ require 'date'
 require './lib/cipher'
 require './lib/shift'
 require './lib/date_format'
+require './lib/message'
 
 class CipherTest < Minitest::Test
   include DateFormat
   def setup
     @key = "12345"
     @date = Date.new(1970, 1, 1)
-    @shift = Shift.new(@key, format_date(@date))
+    @shift = Shift.new(@key, format_date(@date), (('a'..'z').to_a << ' '))
     @cipher = Cipher.new(@shift)
   end
 
@@ -26,12 +27,12 @@ class CipherTest < Minitest::Test
     assert_equal 'h', @cipher.shift_letter('x', 16, -1)
   end
 
-  def test_it_can_encode_a_chunk
-    assert_equal 'ajsc', @cipher.encode('hell')
+  def test_it_can_encode_a_message
+    assert_equal 'ajsc', @cipher.encode_message(Message.new('hell'))
   end
 
-  def test_it_can_decode_a_chunk
-    assert_equal 'hell', @cipher.decode('ajsc')
+  def test_it_can_decode_a_message
+    assert_equal 'hell', @cipher.decode_message(Message.new('ajsc'))
   end
 
   def test_it_can_shift_a_chunk
