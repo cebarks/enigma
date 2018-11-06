@@ -32,7 +32,7 @@ class Enigma
   def crack(ciphertext, date = format_date(Date.today))
     i = 0
     plaintext = ""
-    loop do
+    begin
       message = Message.new(ciphertext)
       shift = Shift.new(i.to_s.rjust(5, '0'), date, Enigma.default_charset)
       cipher = Cipher.new(shift)
@@ -41,10 +41,9 @@ class Enigma
         cipher.decode(chunk)
       end.join('')
 
-      break if plaintext[plaintext.length-4..plaintext.length] == ' end'
       i += 1
-    end
-    { decryption: plaintext, key: i.to_s.rjust(5, '0'), date: date }
+    end until plaintext[plaintext.length-4..plaintext.length] == ' end'
+    { decryption: plaintext, key: (i-1).to_s.rjust(5, '0'), date: date }
   end
 
   def get_random_key
